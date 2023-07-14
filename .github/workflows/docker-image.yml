@@ -39,7 +39,7 @@ jobs:
         SERVICE_NAME: ${{vars.SERVICE_NAME}}
         TIME_STAMP: ${{ steps.date.outputs.date }}
       run: | 
-        docker build Dockerfile --build-arg JAR_FILE=payments-service-example.jar -t payments-service-example:1
+        docker build . -f ./Dockerfile --tag payment-service-t:$TIME_STAMP
         docker image push devopsp23/$SERVICE_NAME:$TIME_STAMP
         docker run -d devopsp23/$SERVICE_NAME:$TIME_STAMP
        
