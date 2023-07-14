@@ -28,13 +28,16 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
       
-
+    - name: Get current date
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+        
 # Build Docker Image  and upload it to Docker Hub
     - name: Build the Docker image Payments
       env:
         USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-        #SERVICE_NAME: ${{var.SERVICE_NAME}}
-        TIME_STAMP: $(date +'%Y-%m-%d')
+        SERVICE_NAME: ${{vars.SERVICE_NAME}}
+        TIME_STAMP: ${{ steps.date.outputs.date }}
       run: | 
         echo "$USERNAME/$SERVICE_NAME:$TIME_STAMP"
         docker build  --build-arg=JAR_FILE=payments-service-example.jar -tag $USERNAME/$SERVICE_NAME:$TIME_STAMP
