@@ -32,16 +32,15 @@ jobs:
     - name: Get current date
       id: date
       run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
-    - name: Test with environment variables
-      run: echo $DATE
-      env:
-        DATE: ${{ steps.date.outputs.date }}  
+      
 
 # Build Docker Image  and upload it to Docker Hub
     - name: Build the Docker image Payments
       run: | 
-        docker build --build-arg JAR_FILE=payments-service-example.jar -t payments-service-example:${{ env.DATE }}
-        docker image push payments-service-example:${{ env.DATE }}
-        docker run -d payments-service-example:${{ env.DATE }}
+        docker build --build-arg JAR_FILE=payments-service-example.jar -t payments-service-example:$DATE
+        docker image push payments-service-example:$DATE
+        docker run -d payments-service-example:$DATE
+        env:
+          DATE: ${{ steps.date.outputs.date }}
 
  
