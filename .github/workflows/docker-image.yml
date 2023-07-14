@@ -34,15 +34,16 @@ jobs:
     - name: Checking TAG_NAME First
       run: echo ${{ env.TAG_NAME }}
       
-# Get Current Date    
-    - name: Get current date
-      id: date
-      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+# Get Current Date
+
+#    - name: Get current date
+ #     id: date
+  #    run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
       
-    - name: Setting Image Name
-      run: echo $TAG_NAME
-      env:
-        TAG_NAME: payments-service-example:${{ steps.date.outputs.date }}
+   # - name: Setting Image Name
+    #  run: echo $TAG_NAME
+     # env:
+      #  TAG_NAME: payments-service-example:${{ steps.date.outputs.date }}
 
     - name: Checking TAG_NAME Last
       run: echo ${{ env.TAG_NAME }}
