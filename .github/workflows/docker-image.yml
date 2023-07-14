@@ -40,7 +40,7 @@ jobs:
 # Build Docker Image  and upload it to Docker Hub
     - name: Build the Docker image Payments
       run: | 
-        docker build --build-arg JAR_FILE=payments-service-example.jar -t payments-service-example:$DATE
+        docker build --build-arg JAR_FILE=payments-service-example.jar -t payments-service-example:$(DATE)
         docker image push payments-service-example:$DATE
         docker run -d payments-service-example:$DATE
 
