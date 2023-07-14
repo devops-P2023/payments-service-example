@@ -33,7 +33,7 @@ jobs:
     - name: Build the Docker image Payments
       env:
         USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-        SERVICE_NAME: ${{var.SERVICE_NAME}}
+        #SERVICE_NAME: ${{var.SERVICE_NAME}}
         TIME_STAMP: $(date +'%Y-%m-%d')
       run: | 
         echo $USERNAME/$SERVICE_NAME:$TIME_STAMP
