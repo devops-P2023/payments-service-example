@@ -41,6 +41,7 @@ jobs:
 # Build Docker Image  and upload it to Docker Hub
     - name: Build the Docker image Payments
       run: | 
+        echo ${{ env.TAG_NAME }}
         docker build --build-arg JAR_FILE=payments-service-example.jar -t ${{ env.TAG_NAME }}
         docker image push ${{ env.TAG_NAME }}
         docker run -d ${{ env.TAG_NAME }}
