@@ -7,10 +7,6 @@ on:
   pull_request:
     branches: [ "dev" ]
 
-# Get Current Date for Image
-env:
-  TIME_STAMP: $(date +'%Y-%m-%d')
-
 jobs:
 
   build:
@@ -35,10 +31,15 @@ jobs:
 
 # Build Docker Image  and upload it to Docker Hub
     - name: Build the Docker image Payments
+      env:
+        USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+        SERVICE_NAME: ${{variables.SERVICE_NAME}}
+        TIME_STAMP: $(date +'%Y-%m-%d')
       run: | 
-        docker build --build-arg=JAR_FILE=payments-service-example.jar --tag=${{ secrets.DOCKERHUB_USERNAME }}/payments-service:${{ env.TIME_STAMP }}
-        docker image push ${{ secrets.DOCKERHUB_USERNAME }}/payments-service:${{ env.TIME_STAMP }}
-        docker run -d ${{ secrets.DOCKERHUB_USERNAME }}/payments-service:${{ env.TIME_STAMP }}
+        echo $USERNAME/$SERVICE_NAME:$TIME_STAMP
+        docker build  --build-arg=JAR_FILE=payments-service-example.jar -tag $USERNAME/$SERVICE_NAME:$TIME_STAMP
+        docker image push $USERNAME/$SERVICE_NAME:$TIME_STAMP
+        docker run -d $USERNAME/$SERVICE_NAME:$TIME_STAMP
        
 
  
