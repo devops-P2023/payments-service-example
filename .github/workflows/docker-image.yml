@@ -33,7 +33,7 @@ jobs:
       run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
         
 # Build Docker Image  and upload it to Docker Hub
-    - name: Build the Docker image Payments
+    - name: Build the Docker Image
       env:
         USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
         SERVICE_NAME: ${{vars.SERVICE_NAME}}
@@ -43,5 +43,5 @@ jobs:
         docker image push $USERNAME/$SERVICE_NAME:$TIME_STAMP
         docker run -d $USERNAME/$SERVICE_NAME:$TIME_STAMP
        
-#docker build  --build-arg JAR_FILE=payments-service-example.jar -tag devopsp23/$SERVICE_NAME:$TIME_STAMP
+
  
