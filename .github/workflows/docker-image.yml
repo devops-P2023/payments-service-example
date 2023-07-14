@@ -40,7 +40,7 @@ jobs:
         TIME_STAMP: ${{ steps.date.outputs.date }}
       run: | 
         echo "$USERNAME/$SERVICE_NAME:$TIME_STAMP"
-        docker build  --build-arg=JAR_FILE=payments-service-example.jar -tag $USERNAME/$SERVICE_NAME:$TIME_STAMP
+        docker build  --build-arg=JAR_FILE=payments-service-example.jar -tag $SERVICE_NAME:$TIME_STAMP
         docker image push $USERNAME/$SERVICE_NAME:$TIME_STAMP
         docker run -d $USERNAME/$SERVICE_NAME:$TIME_STAMP
        
