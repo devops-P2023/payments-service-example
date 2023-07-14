@@ -35,7 +35,7 @@ jobs:
 # Build Docker Image  and upload it to Docker Hub
     - name: Build the Docker image Payments
       env:
-        USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+        USERNAME: devopsp23
         SERVICE_NAME: ${{vars.SERVICE_NAME}}
         TIME_STAMP: ${{ steps.date.outputs.date }}
       run: | 
