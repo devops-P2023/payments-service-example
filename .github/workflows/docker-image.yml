@@ -8,11 +8,14 @@ on:
     branches: [ "dev" ]
 
 jobs:
+ SonarTest:
+    uses: ./.github/workflows/sonarscan.yml
+    secrets:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-  build:
-
+ build:
+    needs: SonarTest
     runs-on: ubuntu-latest
-
     steps:
 
 # Login with Docker Hub, so that docker images are store and available there instead of locally
